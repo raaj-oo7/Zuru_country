@@ -26,7 +26,7 @@ body {
     margin-left: 5px;
 }
 
-input[type=text] {
+#search {
     display: block;
     margin: 0 0 0 auto;
     width: 30px;
@@ -42,7 +42,7 @@ input[type=text] {
     transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+#search:focus {
     width: 100%;
     width: 500px;
     border: none;
@@ -135,6 +135,11 @@ img {
    border:2px solid #0000ff;
 }
 
+.countryName{
+    width: 120px;
+    background: transparent;
+    border: none;
+}
 
 @media only screen and (max-width:600px) {
     input[type=text]:focus {

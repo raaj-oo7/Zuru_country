@@ -2,12 +2,12 @@ const searchInput = document.getElementById("search");
 const itemList = document.getElementById("item-list");
 
 const countries = ["USA", "Italy", "Japan", "China", "India"];
-const maxBlocks = 48; 
+const maxBlocks = 48;
 
 // Function to render the country list
 function renderCountries(filter = "") {
     const countryList = document.querySelector(".app");
-    countryList.innerHTML = ""; 
+    countryList.innerHTML = "";
 
     const filteredCountries = countries.filter(country => country.toLowerCase().includes(filter.toLowerCase()));
 
@@ -24,27 +24,49 @@ function renderCountries(filter = "") {
             // Append the image to the country item
             countryItem.appendChild(image);
 
-            // Add event listener to edit country name using input
-            countryItem.addEventListener("click", () => {
-                const allCountries = document.querySelectorAll(".country");
-                allCountries.forEach(item => item.classList.remove("active"));
+            const input = document.createElement("input");
+            input.className = "countryName"
+            input.type = "text";
+            input.value = country;
 
-                countryItem.classList.add("active");
+            // Add event listener to handle input click and stop propagation
+            input.addEventListener("click", (e) => {
+                e.stopPropagation();
             });
+
+            // Add event listener to handle input change
+            input.addEventListener("change", (e) => {
+                const newValue = e.target.value;
+                const index = countries.indexOf(country);
+                if (index !== -1) {
+                    countries[index] = newValue;
+                }
+                renderCountries(searchInput.value);
+            });
+
+            // Append the input field to the country item
+            countryItem.appendChild(input);
 
             const countryText = document.createTextNode(country);
             countryItem.appendChild(countryText);
 
+            // Add an event listener to highlight the country when clicked
+            countryItem.addEventListener("click", () => {
+                document.querySelectorAll(".country").forEach(c => c.classList.remove("active"));
+                countryItem.classList.add("active");
+            });
+
             // Append the country item to the country list
             countryList.appendChild(countryItem);
         } else {
-            // Add empty blocks 
+            // Add empty blocks
             const emptyBlock = document.createElement("li");
             emptyBlock.className = "country empty";
             countryList.appendChild(emptyBlock);
         }
     }
 }
+
 
 // Initial rendering
 renderCountries();
@@ -95,4 +117,3 @@ highlightFirstElement();
 searchInput.addEventListener("input", () => {
     renderCountries(searchInput.value);
 });
-
