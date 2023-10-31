@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: #D4D4D4;
+}
+
+.title {
+    font-family: Verdana, Tahoma, sans-serif;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+input[type=text] {
+    display: block;
+    margin: 0 0 0 auto;
+    width: 30px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-image: url(./image/icon-search.svg);
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 6px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+    width: 500px;
+    border: none;
+}
+
+.icon-wrap {
+    position: relative;
+    padding: 5px;
+    background-color: #8df8e3;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    overflow-y: scroll;
+}
+
+.container,
+.buttons {
+    width: 100%;
+    max-width: 600px;
+    background-color: #D4D4D4;
+    height: 500px;
+    margin: auto;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 25px;
+}
+
+.container::-webkit-scrollbar {
+    width: 0;
+}
+
+li {
+    list-style: none;
+    height: 120px;
+    width: 100%;
+    background-color: #BBBBBB;
+}
+
+.country {
+    height: 120px;
+    width: 100%;
+    background-color: #BBBBBB;
+}
+
+img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.buttons {
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.new-button,
+.delete-button {
+    width: 50%;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.new-button {
+    background-color: #4fcd4f;
+}
+
+.delete-button {
+    background-color: #de1e1e;
+}
+
+.highlighted {
+    border:2px solid #800080;
+    font-weight: bold;
+}
+
+.active{
+   border:2px solid #0000ff;
+}
+
+
+@media only screen and (max-width:600px) {
+    input[type=text]:focus {
+        max-width: 400px;
+    }
+}
+
+@media only screen and (max-width:450px) {
+    .app {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(24, 1fr);
+    }
+
+    input[type=text]:focus {
+        max-width: 220px;
+    }
+}
