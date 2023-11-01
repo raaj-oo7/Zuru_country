@@ -141,7 +141,11 @@ img {
 }
 
 @media only screen and (max-width:600px) {
-    input[type=text]:focus {
+    .app {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(16, 1fr);
+    }
+    #search:focus {
         max-width: 400px;
     }
 }
@@ -152,7 +156,7 @@ img {
         grid-template-rows: repeat(24, 1fr);
     }
 
-    input[type=text]:focus {
+    #search:focus {
         max-width: 220px;
     }
 }
