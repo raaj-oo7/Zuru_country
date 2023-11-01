@@ -1,5 +1,4 @@
 const searchInput = document.getElementById("search");
-const itemList = document.getElementById("item-list");
 
 const countries = ["USA", "Italy", "Japan", "China", "India"];
 const maxBlocks = 48;
@@ -47,9 +46,6 @@ function renderCountries(filter = "") {
             // Append the input field to the country item
             countryItem.appendChild(input);
 
-            const countryText = document.createTextNode(country);
-            countryItem.appendChild(countryText);
-
             // Add an event listener to highlight the country when clicked
             countryItem.addEventListener("click", () => {
                 document.querySelectorAll(".country").forEach(c => c.classList.remove("active"));
@@ -86,7 +82,7 @@ const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", () => {
     const selectedCountry = document.querySelector(".country.active");
     if (selectedCountry) {
-        const countryName = selectedCountry.textContent;
+        const countryName = selectedCountry.querySelector(".countryName").value;
         const index = countries.indexOf(countryName);
         if (index !== -1) {
             countries.splice(index, 1);
