@@ -10,22 +10,19 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="title">
-            MY ITEMS
-        </div>
-
-        <div class="input-field">
-            <input id="search" type="text" placeholder="Search Country">
-        </div>
-    </nav>
     <main class="container">
+        <nav class="navbar">
+            <div class="title">
+                MY ITEMS
+            </div>
+            <input id="Search" name="Search" type="search" placeholder="Search" />
+        </nav>
         <ul class="app" id="item-list"></ul>
+        <div class="buttons">
+            <button class="new-button" id="new-button">NEW</button>
+            <button class="delete-button" id="delete-button">DELETE</button>
+        </div>
     </main>
-    <div class="buttons">
-        <button class="new-button" id="new-button">NEW</button>
-        <button class="delete-button" id="delete-button">DELETE</button>
-    </div>
     <script src="./main.js"></script>
 </body>
 
