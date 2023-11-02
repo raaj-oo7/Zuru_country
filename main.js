@@ -20,7 +20,7 @@ function renderCountries(filter = "") {
             countryItem.className = "country";
 
             const image = document.createElement("img");
-            image.src = "images/country.png";
+            image.src = "/images/country.png";
 
             // Append the image to the country item
             countryItem.appendChild(image);
