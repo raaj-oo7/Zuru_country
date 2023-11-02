@@ -1,4 +1,6 @@
-const searchInput = document.getElementById("search");
+const searchInput = document.getElementById("Search");
+const deleteButton = document.getElementById("delete-button");
+const newButton = document.getElementById("new-button");
 
 const countries = ["USA", "Italy", "Japan", "China", "India"];
 const maxBlocks = 48;
@@ -18,7 +20,7 @@ function renderCountries(filter = "") {
             countryItem.className = "country";
 
             const image = document.createElement("img");
-            image.src = '/images/country.png';
+            image.src = '../images/country.png';
 
             // Append the image to the country item
             countryItem.appendChild(image);
@@ -43,12 +45,11 @@ function renderCountries(filter = "") {
                 renderCountries(searchInput.value);
             });
 
-            // Append the input field to the country item
             countryItem.appendChild(input);
 
-            // Add an event listener to highlight the country when clicked
+            // Add an event listener to select the country when clicked
             countryItem.addEventListener("click", () => {
-                document.querySelectorAll(".country").forEach(c => c.classList.remove("active"));
+                document.querySelectorAll(".country").forEach(el => el.classList.remove("active"));
                 countryItem.classList.add("active");
             });
 
@@ -62,13 +63,9 @@ function renderCountries(filter = "") {
         }
     }
 }
-
-
-// Initial rendering
 renderCountries();
 
 // Add a new country
-const newButton = document.getElementById("new-button");
 newButton.addEventListener("click", () => {
     if (countries.length < maxBlocks) {
         countries.push("New_Country");
@@ -78,7 +75,6 @@ newButton.addEventListener("click", () => {
 });
 
 // Delete a country
-const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", () => {
     const selectedCountry = document.querySelector(".country.active");
     if (selectedCountry) {
@@ -91,23 +87,20 @@ deleteButton.addEventListener("click", () => {
     }
 });
 
-// Add a click event listener to highlight the selected country
+//country selection and by default first country is selected 
 document.querySelectorAll(".country").forEach(country => {
-    country.addEventListener("click", () => {
-        document.querySelectorAll(".country").forEach(c => c.classList.remove("active"));
-        country.classList.add("active");
-    });
-});
 
-// Highlight the first country
-function highlightFirstElement() {
+    // first country selected by default
     const firstCountry = document.querySelector(".country");
     if (firstCountry) {
-        firstCountry.classList.add("highlighted");
+        firstCountry.classList.add("active");
     }
-}
 
-highlightFirstElement();
+    // if empty class available then remove active class from the element
+    if (country.classList.empty) {
+        country.classList.remove("active")
+    }
+});
 
 // Add an input event listener to the search box
 searchInput.addEventListener("input", () => {
