@@ -25,35 +25,44 @@ body {
     margin-left: 5px;
 }
 
-#Search {
-    display: block;
-    margin: 0 0 0 auto;
-    width: 30px;
-    box-sizing: border-box;
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px solid #ccc;
-    font-size: 16px;
-    background-color: white;
-    background-image: url(./images/icon-search.svg);
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 6px 12px 40px;
+    background-color: #ffffff;
+}
+
+.search-button {
+    border: none;
+    padding: 0 5px;
+    background-color: #ffffff;
+}
+
+.search-bar {
+    width: 0;
+    font-size: 15px;
+    border: none;
     transition: width 0.4s ease-in-out;
 }
 
-#Search::-webkit-search-cancel-button {
+.search-bar::-webkit-search-cancel-button {
     position: relative;
     right: 20px;
 }
 
-#Search:focus {
+.search-bar:focus {
     width: 100%;
-    width: 500px;
+    width: 450px;
+    border: none;
+    outline: 0;
+    padding: 7px 5px;
     border: none;
 }
 
 .container {
     overflow-y: scroll;
-    height: 80%;
+    height: 100%;
 }
 
 .container,
@@ -136,12 +145,8 @@ img {
         grid-template-rows: repeat(16, 1fr);
     }
 
-    #Search:focus {
+    .search-bar:focus {
         max-width: 400px;
-    }
-
-    .container{
-        height: 100%;
     }
 }
 
@@ -151,7 +156,7 @@ img {
         grid-template-rows: repeat(24, 1fr);
     }
 
-    #Search:focus {
-        max-width: 220px;
+    .search-bar:focus {
+        max-width: 190px;
     }
 }

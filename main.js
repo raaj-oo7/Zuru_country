@@ -106,3 +106,8 @@ document.querySelectorAll(".country").forEach(country => {
 searchInput.addEventListener("input", () => {
     renderCountries(searchInput.value);
 });
+
+function focusInput() {
+    const searchInput = document.getElementById("Search");
+    searchInput.focus();
+}
