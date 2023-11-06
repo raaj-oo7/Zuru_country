@@ -16,7 +16,6 @@ body {
     align-items: center;
     max-width: 600px;
     margin: auto;
-    margin-top: 30px;
     background-color: #D4D4D4;
 }
 
@@ -26,41 +25,44 @@ body {
     margin-left: 5px;
 }
 
-input[type=text] {
-    display: block;
-    margin: 0 0 0 auto;
-    width: 30px;
-    box-sizing: border-box;
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px solid #ccc;
-    font-size: 16px;
-    background-color: white;
-    background-image: url(./image/icon-search.svg);
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 6px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
+    background-color: #ffffff;
+}
+
+.search-button {
+    border: none;
+    padding: 0 5px;
+    background-color: #ffffff;
+}
+
+.search-bar {
+    width: 0;
+    font-size: 15px;
+    border: none;
     transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
-    width: 100%;
-    width: 500px;
-    border: none;
+.search-bar::-webkit-search-cancel-button {
+    position: relative;
+    right: 20px;
 }
 
-.icon-wrap {
-    position: relative;
-    padding: 5px;
-    background-color: #8df8e3;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.search-bar:focus {
+    width: 100%;
+    width: 450px;
+    border: none;
+    outline: 0;
+    padding: 7px 5px;
+    border: none;
 }
 
 .container {
     overflow-y: scroll;
+    height: 100%;
 }
 
 .container,
@@ -68,7 +70,6 @@ input[type=text]:focus {
     width: 100%;
     max-width: 600px;
     background-color: #D4D4D4;
-    height: 500px;
     margin: auto;
 }
 
@@ -106,6 +107,8 @@ img {
     height: 60px;
     display: flex;
     justify-content: space-around;
+    position: sticky;
+    bottom: 0;
 }
 
 .new-button,
@@ -126,18 +129,23 @@ img {
     background-color: #de1e1e;
 }
 
-.highlighted {
-    border:2px solid #800080;
-    font-weight: bold;
+.active {
+    border: 2px solid #0000ff;
 }
 
-.active{
-   border:2px solid #0000ff;
+.countryName {
+    width: 120px;
+    background: transparent;
+    border: none;
 }
-
 
 @media only screen and (max-width:600px) {
-    input[type=text]:focus {
+    .app {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(16, 1fr);
+    }
+
+    .search-bar:focus {
         max-width: 400px;
     }
 }
@@ -148,7 +156,7 @@ img {
         grid-template-rows: repeat(24, 1fr);
     }
 
-    input[type=text]:focus {
-        max-width: 220px;
+    .search-bar:focus {
+        max-width: 190px;
     }
 }

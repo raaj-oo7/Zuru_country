@@ -1,13 +1,14 @@
-const searchInput = document.getElementById("search");
-const itemList = document.getElementById("item-list");
+const searchInput = document.getElementById("Search");
+const deleteButton = document.getElementById("delete-button");
+const newButton = document.getElementById("new-button");
 
 const countries = ["USA", "Italy", "Japan", "China", "India"];
-const maxBlocks = 48; 
+const maxBlocks = 48;
 
 // Function to render the country list
 function renderCountries(filter = "") {
     const countryList = document.querySelector(".app");
-    countryList.innerHTML = ""; 
+    countryList.innerHTML = "";
 
     const filteredCountries = countries.filter(country => country.toLowerCase().includes(filter.toLowerCase()));
 
@@ -19,38 +20,52 @@ function renderCountries(filter = "") {
             countryItem.className = "country";
 
             const image = document.createElement("img");
-            image.src = '/image/country.png';
+            image.src = './images/country.png';
 
             // Append the image to the country item
             countryItem.appendChild(image);
 
-            // Add event listener to edit country name using input
-            countryItem.addEventListener("click", () => {
-                const allCountries = document.querySelectorAll(".country");
-                allCountries.forEach(item => item.classList.remove("active"));
+            const input = document.createElement("input");
+            input.className = "countryName"
+            input.type = "text";
+            input.value = country;
 
-                countryItem.classList.add("active");
+            // Add event listener to handle input click and stop propagation
+            input.addEventListener("click", (e) => {
+                e.stopPropagation();
             });
 
-            const countryText = document.createTextNode(country);
-            countryItem.appendChild(countryText);
+            // Add event listener to handle input change
+            input.addEventListener("change", (e) => {
+                const newValue = e.target.value;
+                const index = countries.indexOf(country);
+                if (index !== -1) {
+                    countries[index] = newValue;
+                }
+                renderCountries(searchInput.value);
+            });
+
+            countryItem.appendChild(input);
+
+            // Add an event listener to select the country when clicked
+            countryItem.addEventListener("click", () => {
+                document.querySelectorAll(".country").forEach(el => el.classList.remove("active"));
+                countryItem.classList.add("active");
+            });
 
             // Append the country item to the country list
             countryList.appendChild(countryItem);
         } else {
-            // Add empty blocks 
+            // Add empty blocks
             const emptyBlock = document.createElement("li");
             emptyBlock.className = "country empty";
             countryList.appendChild(emptyBlock);
         }
     }
 }
-
-// Initial rendering
 renderCountries();
 
 // Add a new country
-const newButton = document.getElementById("new-button");
 newButton.addEventListener("click", () => {
     if (countries.length < maxBlocks) {
         countries.push("New_Country");
@@ -60,11 +75,10 @@ newButton.addEventListener("click", () => {
 });
 
 // Delete a country
-const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", () => {
     const selectedCountry = document.querySelector(".country.active");
     if (selectedCountry) {
-        const countryName = selectedCountry.textContent;
+        const countryName = selectedCountry.querySelector(".countryName").value;
         const index = countries.indexOf(countryName);
         if (index !== -1) {
             countries.splice(index, 1);
@@ -73,26 +87,27 @@ deleteButton.addEventListener("click", () => {
     }
 });
 
-// Add a click event listener to highlight the selected country
+//country selection and by default first country is selected 
 document.querySelectorAll(".country").forEach(country => {
-    country.addEventListener("click", () => {
-        document.querySelectorAll(".country").forEach(c => c.classList.remove("active"));
-        country.classList.add("active");
-    });
-});
 
-// Highlight the first country
-function highlightFirstElement() {
+    // first country selected by default
     const firstCountry = document.querySelector(".country");
     if (firstCountry) {
-        firstCountry.classList.add("highlighted");
+        firstCountry.classList.add("active");
     }
-}
 
-highlightFirstElement();
+    // if empty class available then remove active class from the element
+    if (country.classList.empty) {
+        country.classList.remove("active")
+    }
+});
 
 // Add an input event listener to the search box
 searchInput.addEventListener("input", () => {
     renderCountries(searchInput.value);
 });
 
+function focusInput() {
+    const searchInput = document.getElementById("Search");
+    searchInput.focus();
+}
